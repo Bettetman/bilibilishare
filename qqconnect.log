@@ -1,0 +1,4 @@
+0    INFO  [2020-06-17 12:14:16]  {dataSource-1} inited
+1188245 INFO  [2020-06-17 12:34:04]  {dataSource-1} closed
+1188949 INFO  [2020-06-17 12:34:05]  {dataSource-2} inited
+0    INFO  [2020-06-17 12:42:44]  {dataSource-1} inited
