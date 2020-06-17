@@ -2,17 +2,20 @@ package cn.sicnu.ming.controller;
 
 import cn.sicnu.ming.entity.User;
 import cn.sicnu.ming.service.UserService;
-import cn.sicnu.ming.service.impl.UserServiceImpl;
 import cn.sicnu.ming.util.Md5HashUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.awt.image.ImageProducer;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,6 +54,39 @@ public class UserController {
             map.put("success",true);
         }
         return map;
-
+    }
+    @ResponseBody
+    @PostMapping("/login")
+    public Map<String,Object> login(User user, HttpSession httpSession){
+        Map<String,Object> map = new HashMap<>();
+        if (StringUtils.isEmpty(user.getUserName())){
+            map.put("success",false);
+            map.put("errorInfo","请正确输入用户名");
+        }else if (StringUtils.isEmpty(user.getPassword())){
+            map.put("success",false);
+            map.put("errorInfo","请正确输入密码");
+        }else {
+            try {
+                Subject sub = SecurityUtils.getSubject();
+                UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), Md5HashUtil.md5x2(user.getPassword()));
+                sub.login(token);
+                String userName = SecurityUtils.getSubject().getPrincipal().toString();
+                User currcentUser = userService.findByUserName(userName);
+                if (currcentUser.isOff()) {
+                    map.put("success", false);
+                    map.put("errorInfo", "该账号被封禁，请联系管理员");
+                    sub.logout();
+                } else {
+                    currcentUser.setRegistrationDate(new Date());
+                    userService.save(currcentUser);
+                    map.put("success", true);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                map.put("success", false);
+                map.put("errorInfo", "账号或密码不正确");
+            }
+        }
+        return  map;
     }
 }
