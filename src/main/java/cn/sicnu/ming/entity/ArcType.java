@@ -7,7 +7,9 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 /**
- * 资源类型实体
+ *  * @author frank ming
+ *  * @createTime 2020617 13:22
+ *  * @description 资源类型实体
  */
 
 @Entity

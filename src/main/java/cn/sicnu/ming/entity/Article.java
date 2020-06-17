@@ -10,7 +10,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 资源（Article）实体
+ *  * @author frank ming
+ *  * @createTime 2020617 13:27
+ *  * @description 文章类型实体
  */
 @Entity
 @Table(name = "article")

@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 用户评论（Comment）实体
+ *  * @author frank ming
+ *  * @createTime 2020617 13：40
+ *  * @description 评论类型实体
  */
 @Entity
 @Table(name = "comment")
