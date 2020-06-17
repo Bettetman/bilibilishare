@@ -14,7 +14,7 @@ public class ConstUtil {
     //用户id名称
     public static final String USER_ID_NAME = "userId";
     //重置密码时设置默认密码为123456
-    public static final String PASSWORD = "123456";
+    public static final String Deful_PASSWORD = "123456";
     //邮件宿主机
     public static final String Mail_INFO = "909983052@qq.com";
     //邮件的密钥

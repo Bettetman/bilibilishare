@@ -15,4 +15,6 @@ public interface UserService {
     public User findByEmail(String email);
 
     public void save(User user);
+
+    public User findById(Integer id);
 }
