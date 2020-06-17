@@ -2,3 +2,12 @@
 1188245 INFO  [2020-06-17 12:34:04]  {dataSource-1} closed
 1188949 INFO  [2020-06-17 12:34:05]  {dataSource-2} inited
 0    INFO  [2020-06-17 12:42:44]  {dataSource-1} inited
+0    INFO  [2020-06-17 16:10:50]  {dataSource-1} inited
+0    INFO  [2020-06-17 16:19:01]  {dataSource-1} inited
+0    INFO  [2020-06-17 16:24:29]  {dataSource-1} inited
+0    INFO  [2020-06-17 16:29:35]  {dataSource-1} inited
+1    INFO  [2020-06-17 16:33:13]  {dataSource-1} inited
+0    INFO  [2020-06-17 16:36:00]  {dataSource-1} inited
+0    INFO  [2020-06-17 16:37:18]  {dataSource-1} inited
+0    INFO  [2020-06-17 16:38:43]  {dataSource-1} inited
+0    INFO  [2020-06-17 16:42:10]  {dataSource-1} inited
