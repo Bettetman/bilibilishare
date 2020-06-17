@@ -1,10 +1,11 @@
 package cn.sicnu.ming.util;
 
 import java.security.MessageDigest;
+import java.util.Random;
 
 /**
  * @author frank ming
- * @createTime 2020061717 19:28
+ * @createTime 20200617 19:28
  * @description md5加密的工具类
  */
 public class Md5HashUtil {
@@ -58,9 +59,20 @@ public class Md5HashUtil {
             return false;
     }
 
-//    public static void main(String[] args) {
+    public static String getSixRandom(){
+        String end = "";
+        Random random = new Random();
+        for (int i = 0; i < 6; i++) {
+            end = end + random.nextInt(10);
+        }
+        return end;
+    }
+
+    public static void main(String[] args) {
+//
+//        System.out.println(Md5HashUtil.getSixRandom());
 //        System.out.println(Md5HashUtil.md5x2("12345"));
 //        System.out.println(Md5HashUtil.md5x2("123456111111111111111"));
 //        System.out.println(Md5HashUtil.check("12345","CF7D4BDD2AFBB023F0B265B3E99BA1F9"));
-//    }
+    }
 }

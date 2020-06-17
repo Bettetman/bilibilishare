@@ -2,11 +2,14 @@ package cn.sicnu.ming.controller;
 
 import cn.sicnu.ming.entity.User;
 import cn.sicnu.ming.service.UserService;
+import cn.sicnu.ming.util.ConstUtil;
 import cn.sicnu.ming.util.Md5HashUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Date;
@@ -22,7 +26,7 @@ import java.util.Map;
 
 /**
  * @author frank ming
- * @createTime 2020061717 16:58
+ * @createTime 20200617 16:58
  * @description 用户控制层
  */
 @Controller
@@ -30,7 +34,12 @@ import java.util.Map;
 public class UserController {
 
     @Autowired
-    public UserService userService;
+    private UserService userService;
+
+    @Resource
+    private JavaMailSender mailSender;
+
+
 
     @ResponseBody
     @RequestMapping("/register")
@@ -79,6 +88,7 @@ public class UserController {
                 } else {
                     currcentUser.setRegistrationDate(new Date());
                     userService.save(currcentUser);
+                    httpSession.setAttribute(ConstUtil.CURRCENT_USER,currcentUser);
                     map.put("success", true);
                 }
             }catch (Exception e){
@@ -89,4 +99,43 @@ public class UserController {
         }
         return  map;
     }
+
+    @ResponseBody
+    @PostMapping("/sendEmail")
+    public Map<String,Object> sendEmail(String email,HttpSession session){
+        Map<String,Object> map = new HashMap<>();
+        User user = userService.findByEmail(email);
+        if (StringUtils.isEmpty(email)){
+            map.put("success",false);
+            map.put("errorInfo","邮件不能为空");
+        } else{
+            String mailCode = Md5HashUtil.getSixRandom();
+            //发送邮件的信息设置
+            SimpleMailMessage message = new SimpleMailMessage();         //消息构造器
+            message.setFrom(ConstUtil.Mail_INFO);                        //发件人
+            message.setTo(email);                                        //收件人
+            message.setSubject("bilibili素材资源下载网站-用户找回密码");    //主题
+            String text = "您好，"+user.getNickname()+":这封信是由【当好一个up网站】发送的。\n" +
+                    "您收到这封邮件，是由于这个邮箱地址在【当好一个up网站】被登记为用户邮箱，且该用户请求使用 Email 重置密码功能所致。\n" +
+                    "\n" +
+                    "重要提醒！如果您没有提交密码重置的请求或不是【当好一个up网站】的注册用户，请立即忽略并删除这封邮件。只有在您确认需要重置密码的情况下，才需要继续阅读下面的内容。\n" +
+                    "\n" +
+                    "密码重置验证码："+mailCode+" ，该验证码在您提交请求后的 2分钟内有效。\n" +
+                    "\n" +
+                    "输入验证码以后，在打开的页面中输入新的密码后提交，您即可使用新的密码登录网站了。\n" +
+                    "\n" +
+                    "诚心感谢你对本网站的使用\n" +
+                    "\n" +
+                    "【当好一个up网站】管理员联系qq:11451287(加好友请说明来意),后期技术bug提交管理群:741922855";
+            message.setText(text);                //正文内容
+            mailSender.send(message);
+            System.out.println(mailCode);
+            //验证码存到session中去
+            session.setAttribute(ConstUtil.MAIL_CODE_NAME,mailCode);
+            session.setAttribute(ConstUtil.USER_ID_NAME,user.getUserId());
+            map.put("success",true);
+        }
+        return map;
+    }
+
 }

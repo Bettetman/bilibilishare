@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 /**
  * @author frank ming
- * @createTime 2020061717 17:05
+ * @createTime 20200617 17:05
  * @description 用户jpa
  */
 
