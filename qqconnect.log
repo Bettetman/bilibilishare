@@ -992,3 +992,4 @@ Caused by: java.net.NoRouteToHostException: No route to host: connect
 485719 INFO  [2020-06-19 00:40:24]  {dataSource-2} inited
 542107 INFO  [2020-06-19 00:41:20]  {dataSource-2} closed
 542986 INFO  [2020-06-19 00:41:21]  {dataSource-3} inited
+0    INFO  [2020-06-19 00:49:27]  {dataSource-1} inited

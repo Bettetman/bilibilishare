@@ -1,6 +1,8 @@
 package cn.sicnu.ming.controller;
 
+import cn.sicnu.ming.entity.Article;
 import cn.sicnu.ming.entity.User;
+import cn.sicnu.ming.service.ArticleService;
 import cn.sicnu.ming.service.UserService;
 import cn.sicnu.ming.util.ConstUtil;
 import cn.sicnu.ming.util.Md5HashUtil;
@@ -8,15 +10,13 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -40,6 +40,9 @@ public class UserController {
     @Resource
     private JavaMailSender mailSender;
 
+
+    @Autowired
+    private ArticleService articleService;
 
     @ResponseBody
     @RequestMapping("/register")
@@ -170,6 +173,18 @@ public class UserController {
         return "/user/articleManage";
     }
 
+    @ResponseBody
+    @RequestMapping("/articleList")
+    public Map<String,Object> articleList(Article s_articel, @RequestParam(value ="page",required = false)Integer page,
+                                          @RequestParam(value ="limit",required = false)Integer pageSize, HttpSession session ){
+        Map<String,Object> map = new HashMap<>();
+        User currentUser = (User) session.getAttribute(ConstUtil.CURRCENT_USER);
+        s_articel.setUser(currentUser);
+        map.put("data",articleService.list(s_articel,null,null,null,page,pageSize, Sort.Direction.DESC,"publishDate"));
+        map.put("count",articleService.getCount(s_articel,null,null,null));         //总记录数
+        map.put("code",0);
+        return map;
+    }
 
 }
 
