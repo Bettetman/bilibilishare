@@ -1,4 +1,4 @@
-50   ERROR [2020-06-18 23:34:17]  create connection error
+0   ERROR [2020-06-18 23:34:17]  create connection error
 com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
 
 Last packet sent to the server was 0 ms ago.
@@ -993,3 +993,4 @@ Caused by: java.net.NoRouteToHostException: No route to host: connect
 542107 INFO  [2020-06-19 00:41:20]  {dataSource-2} closed
 542986 INFO  [2020-06-19 00:41:21]  {dataSource-3} inited
 0    INFO  [2020-06-19 00:49:27]  {dataSource-1} inited
+0    INFO  [2020-06-19 01:18:40]  {dataSource-1} inited

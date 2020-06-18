@@ -173,6 +173,7 @@ public class UserController {
         return "/user/articleManage";
     }
 
+    //用户端的文章展示
     @ResponseBody
     @RequestMapping("/articleList")
     public Map<String,Object> articleList(Article s_articel, @RequestParam(value ="page",required = false)Integer page,
@@ -185,6 +186,16 @@ public class UserController {
         map.put("code",0);
         return map;
     }
+
+    /**
+     * 进入资源发布页面
+     */
+    @GetMapping("toAddArticle")
+    public String toAddArticle(){
+        return "/user/AddArticle";
+    }
+
+
 
 }
 
