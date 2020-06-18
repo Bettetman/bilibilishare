@@ -4,6 +4,7 @@ import cn.sicnu.ming.entity.Article;
 import cn.sicnu.ming.entity.User;
 import cn.sicnu.ming.service.ArticleService;
 import cn.sicnu.ming.service.UserService;
+import cn.sicnu.ming.util.CheckBaiduLinkAvailableUtil;
 import cn.sicnu.ming.util.ConstUtil;
 import cn.sicnu.ming.util.Md5HashUtil;
 import org.apache.shiro.SecurityUtils;
@@ -21,9 +22,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * @author frank ming
@@ -196,6 +199,53 @@ public class UserController {
     }
 
 
-
+    /**
+     * 添加资源
+     */
+    @ResponseBody
+    @RequestMapping("/saveArticle")
+    public Map<String,Object> saveArticle(Article article,HttpSession session) throws IOException {
+        Map<String,Object> map = new HashMap<>();
+        if (article.getPoints() < 0 || article.getPoints() > 10) {
+            map.put("success",false);
+            map.put("errorInfo","积分超出正常区间！");
+            return map;
+        }
+        if(!CheckBaiduLinkAvailableUtil.check(article.getDownload())){
+            map.put("success",false);
+            map.put("errorInfo","无效的百度云链接，请检查链接再次发布");
+            return map;
+        }
+        User currentUser = (User) session.getAttribute(ConstUtil.CURRCENT_USER);
+        //资源的添加
+        if(article.getArticleId()==null){
+            article.setPublishDate(new Date());
+            article.setUser(currentUser);
+            if(article.getPoints()==0){
+                article.setFree(true);                                  //积分为0 设置免费
+            }
+            article.setState(1);                                        //审核状态
+            article.setClick(new Random().nextInt(5)+1);
+            articleService.save(article);
+            map.put("success",true);
+        }else {
+            //修改资源
+            Article oldArticle = articleService.getById(article.getArticleId());    //获取实体
+            if(oldArticle.getUser().getUserId().intValue()==currentUser.getUserId().intValue()){
+                oldArticle.setName(article.getName());
+                oldArticle.setPublishDate(new Date());
+                oldArticle.setArcType(article.getArcType());
+                oldArticle.setDownload(article.getDownload());
+                oldArticle.setPassword(article.getPassword());
+                oldArticle.setKeywords(article.getKeywords());
+                oldArticle.setDescription(article.getDescription());
+                oldArticle.setContent(article.getContent());
+                oldArticle.setState(1);                             //用户点击修改后则需要重新审核，状态变为待审核
+                articleService.save(oldArticle);
+                map.put("success",true);
+            }
+        }
+        return map;
+    }
 }
 
