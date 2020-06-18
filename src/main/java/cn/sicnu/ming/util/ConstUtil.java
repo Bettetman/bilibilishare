@@ -21,6 +21,11 @@ public class ConstUtil {
     public static final String MAIL_PSWORD = "byqtoxzbgwulbchj";
     //邮件服务器种类
     public static final String MAIL_HOST = "smtp.qq.com";
-
+    //资源类型名称
+    public static final String ALL_ARC_TYPE_NAME = "allArcType";
+    //所有资源类型
+    public static final String ARC_TYPE_LIST = "arcTypeList";
+    //所有资源
+    public static final String ARTICLE_LIST = "articleList";
 
 }

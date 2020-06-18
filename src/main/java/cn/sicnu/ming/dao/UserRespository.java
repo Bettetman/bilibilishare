@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.Query;
  * @description 用户jpa
  */
 
-public interface UserRepository extends JpaRepository<User,Integer>,
+public interface UserRespository extends JpaRepository<User,Integer>,
         JpaSpecificationExecutor<User> {
 
     @Query(value = "SELECT * FROM user WHERE user_name=?1", nativeQuery = true)

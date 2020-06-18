@@ -70,3 +70,8 @@
 0    INFO  [2020-06-18 12:11:29]  {dataSource-1} inited
 0    INFO  [2020-06-18 12:12:10]  {dataSource-1} inited
 0    INFO  [2020-06-18 12:14:42]  {dataSource-1} inited
+1995570 INFO  [2020-06-18 12:47:57]  {dataSource-1} closed
+1996578 INFO  [2020-06-18 12:47:58]  {dataSource-2} inited
+25733144 INFO  [2020-06-18 19:23:35]  {dataSource-2} closed
+25734167 INFO  [2020-06-18 19:23:36]  {dataSource-3} inited
+0    INFO  [2020-06-18 20:27:36]  {dataSource-1} inited

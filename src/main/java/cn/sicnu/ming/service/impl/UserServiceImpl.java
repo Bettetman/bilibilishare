@@ -1,6 +1,6 @@
 package cn.sicnu.ming.service.impl;
 
-import cn.sicnu.ming.dao.UserRepository;
+import cn.sicnu.ming.dao.UserRespository;
 import cn.sicnu.ming.entity.User;
 import cn.sicnu.ming.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,25 +14,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl  implements UserService {
     @Autowired
-    public UserRepository userRepository;
+    public UserRespository userRespository;
 
     @Override
     public User findByUserName(String name) {
-        return userRepository.findByUserName(name);
+        return userRespository.findByUserName(name);
     }
 
     @Override
     public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return userRespository.findByEmail(email);
     }
 
     @Override
     public void save(User user) {
-        userRepository.save(user);
+        userRespository.save(user);
     }
 
     @Override
     public User findById(Integer id) {
-        return userRepository.getOne(id);
+        return userRespository.getOne(id);
     }
 }
