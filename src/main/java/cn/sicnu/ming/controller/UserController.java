@@ -80,15 +80,15 @@ public class UserController {
                 UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), Md5HashUtil.md5x2(user.getPassword()));
                 sub.login(token);
                 String userName = SecurityUtils.getSubject().getPrincipal().toString();
-                User currcentUser = userService.findByUserName(userName);
-                if (currcentUser.isOff()) {
+                User currentUser = userService.findByUserName(userName);
+                if (currentUser.isOff()) {
                     map.put("success", false);
                     map.put("errorInfo", "该账号被封禁，请联系管理员");
                     sub.logout();
                 } else {
-                    currcentUser.setRegistrationDate(new Date());
-                    userService.save(currcentUser);
-                    httpSession.setAttribute(ConstUtil.CURRCENT_USER, currcentUser);
+                    currentUser.setRegistrationDate(new Date());
+                    userService.save(currentUser);
+                    httpSession.setAttribute(ConstUtil.CURRCENT_USER, currentUser);
                     map.put("success", true);
                 }
             } catch (Exception e) {

@@ -8,7 +8,7 @@ package cn.sicnu.ming.util;
 public class ConstUtil {
 
     //当前用户名称
-    public static final String CURRCENT_USER = "currcentUser";
+    public static final String CURRCENT_USER = "currentUser";
     //验证码名称
     public static final String MAIL_CODE_NAME = "mailCode";
     //用户id名称
