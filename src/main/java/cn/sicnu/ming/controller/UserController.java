@@ -13,6 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -161,5 +162,14 @@ public class UserController {
         }
         return  map;
     }
+
+
+    //后面是相关的后台跳转的
+    @GetMapping("/articleManage")
+    public String articleManager(){
+        return "/user/articleManage";
+    }
+
+
 }
 

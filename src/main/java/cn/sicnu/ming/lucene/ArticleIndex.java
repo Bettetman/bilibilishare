@@ -18,6 +18,7 @@ import org.apache.lucene.search.highlight.*;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import java.io.IOException;
 import java.io.StringReader;
@@ -31,6 +32,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @createTime 20200618 20:21
  * @description 分页资源索引处理类
  */
+@Component
 public class ArticleIndex {
 
     private Directory dir = null;

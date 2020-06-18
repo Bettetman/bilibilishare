@@ -1,6 +1,7 @@
 package cn.sicnu.ming.filter;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.*;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.io.IOException;
  * @createTime 20200617 16:48
  * @description 过滤
  */
+@Configuration
 public class Allfilter implements Filter {
 
     public FilterRegistrationBean<Allfilter> getAllFilter(){
