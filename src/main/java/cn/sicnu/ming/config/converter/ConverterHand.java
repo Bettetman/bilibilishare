@@ -19,7 +19,6 @@ public class ConverterHand implements Converter<String, ArcType> {
     public ArcType convert(String s) {
         if(s!=null){
             ArcType byId = arcTypeService.getById(Integer.parseInt(s));
-
             return byId;
         }
         return  null;

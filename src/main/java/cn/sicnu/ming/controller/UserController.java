@@ -228,7 +228,10 @@ public class UserController {
             if(article.getPoints()==0){
                 article.setFree(true);                                  //积分为0 设置免费
             }
+            article.setContent(article.getContent().replaceAll("<p>","").replaceAll("</p>",""));
             article.setState(1);//审核状态
+            article.setPublishDate(new Date());
+            article.setCheckDate(new Date());
             article.setClick(new Random().nextInt(5)+1);
             articleService.save(article);
             map.put("success",true);
