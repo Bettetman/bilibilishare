@@ -1047,3 +1047,13 @@ Caused by: java.net.NoRouteToHostException: No route to host: connect
 0    INFO  [2020-06-19 15:22:49]  {dataSource-1} inited
 0    INFO  [2020-06-19 15:36:54]  {dataSource-1} inited
 0    INFO  [2020-06-19 15:43:13]  {dataSource-1} inited
+0    INFO  [2020-06-19 18:12:51]  {dataSource-1} inited
+0    INFO  [2020-06-19 18:20:10]  {dataSource-1} inited
+0    INFO  [2020-06-19 18:21:58]  {dataSource-1} inited
+0    INFO  [2020-06-19 18:23:05]  {dataSource-1} inited
+0    INFO  [2020-06-19 18:25:16]  {dataSource-1} inited
+0    INFO  [2020-06-19 18:38:08]  {dataSource-1} inited
+0    INFO  [2020-06-19 18:40:44]  {dataSource-1} inited
+315225 INFO  [2020-06-19 18:45:59]  {dataSource-1} closed
+0    INFO  [2020-06-19 18:46:06]  {dataSource-1} inited
+0    INFO  [2020-06-19 18:50:25]  {dataSource-1} inited

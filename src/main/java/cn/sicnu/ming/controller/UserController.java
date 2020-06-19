@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -244,6 +245,7 @@ public class UserController {
                 oldArticle.setArcType(article.getArcType());
                 oldArticle.setDownload(article.getDownload());
                 oldArticle.setPassword(article.getPassword());
+                oldArticle.setPoints(article.getPoints());
                 oldArticle.setKeywords(article.getKeywords());
                 oldArticle.setDescription(article.getDescription());
                 oldArticle.setContent(article.getContent());
@@ -254,5 +256,30 @@ public class UserController {
         }
         return map;
     }
+    //检查一下当前用户是否正确
+    @ResponseBody
+    @RequestMapping("/checkArticleUser")
+    public Map<String,Object> checkArticleUser(Integer articleId,HttpSession session){
+        Map<String,Object> map = new HashMap<>();
+        User currentUser = (User) session.getAttribute(ConstUtil.CURRCENT_USER);
+        Article article = articleService.getById(articleId);
+        if (article.getUser().getUserId().intValue() == currentUser.getUserId().intValue()) {
+            map.put("success",true);
+        }else {
+            map.put("success",false);
+            map.put("errorInfo","您不是资源所有者，不能修改！");
+        }
+        return map;
+    }
+    //修改
+    @GetMapping("/toEditArticle/{articleId}")
+    public ModelAndView toEditArticle(@PathVariable(value="articleId",required = true)Integer articleId){
+        ModelAndView mav = new ModelAndView();
+        Article article = articleService.getById(articleId);
+        mav.addObject("article",article);
+        mav.setViewName("/user/editArticle");
+        return mav;
+    }
+
 }
 
