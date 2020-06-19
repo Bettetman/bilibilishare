@@ -271,7 +271,7 @@ public class UserController {
         }
         return map;
     }
-    //修改
+    //修改资源
     @GetMapping("/toEditArticle/{articleId}")
     public ModelAndView toEditArticle(@PathVariable(value="articleId",required = true)Integer articleId){
         ModelAndView mav = new ModelAndView();
@@ -280,6 +280,21 @@ public class UserController {
         mav.setViewName("/user/editArticle");
         return mav;
     }
-
+    //删除资源
+    @ResponseBody
+    @RequestMapping("/articleDelete")
+    public Map<String, Object> articleDelete(Integer articleId,HttpSession session){
+        Map<String,Object> map = new HashMap<>();
+        User currentUser = (User) session.getAttribute(ConstUtil.CURRCENT_USER);
+        Article article = articleService.getById(articleId);
+        if (article.getUser().getUserId().intValue() == currentUser.getUserId().intValue()) {
+            articleService.delete(articleId);
+            map.put("success",true);
+        }else {
+            map.put("success",false);
+            map.put("errorInfo","您不是资源所有者，不能删除！");
+        }
+        return map;
+    }
 }
 
