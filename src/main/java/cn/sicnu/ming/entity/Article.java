@@ -2,6 +2,7 @@ package cn.sicnu.ming.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -38,7 +39,7 @@ public class Article implements Serializable {
     @JoinColumn(name = "userId")
     private User user;                //用户id
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "arcTypeId")
     private ArcType arcType;           //资源类型id
 

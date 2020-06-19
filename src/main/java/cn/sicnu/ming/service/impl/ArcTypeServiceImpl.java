@@ -70,4 +70,9 @@ public class ArcTypeServiceImpl implements ArcTypeService {
     public ArcType getById(Integer id) {
         return arcTypeRespository.getOne(id);
     }
+
+    @Override
+    public ArcType getByName(String name) {
+        return arcTypeRespository.findByArcTypeName(name);
+    }
 }

@@ -223,7 +223,7 @@
             ]
         });
 
-        //监听的js提交
+        //监听提交
         form.on("submit(addArticleForm)",function (data) {
             var _data = data.field;
             var url = "/user/saveArticle";
@@ -246,7 +246,7 @@
                 $("#tjan").attr({"disabled":"disabled"});
                 var data = {name:name,arcType:arcType,download:download,password:password,keywords:keywords,description:description,content:content,points:points};
                 $.ajax({
-                    type:"POST",
+                    type:"post",
                     url:url,
                     data:data,
                     success:function (res) {
@@ -267,6 +267,7 @@
                         }
                     },
                     error:function (data) {
+                        console.log(data);
                         layer.msg("网络错误!",{
                             icon:5,
                             time:2000

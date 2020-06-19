@@ -28,4 +28,10 @@ public class ConstUtil {
     //所有资源
     public static final String ARTICLE_LIST = "articleList";
 
+    //热门资源
+    public static final String CLICK_ARTICLE = "clickArticle";
+
+    //首页模块资源数
+    public static final Integer ARTICLE_NUM= 10;
+
 }

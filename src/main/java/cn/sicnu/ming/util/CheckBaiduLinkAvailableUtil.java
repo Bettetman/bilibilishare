@@ -18,7 +18,7 @@ public class CheckBaiduLinkAvailableUtil {
     static CloseableHttpClient httpClient = HttpClients.createDefault();
 
     public static boolean check(String link) throws IOException {
-        HttpGet httpGet = new HttpGet(link);
+        HttpGet httpGet = new HttpGet(link.trim());
         httpGet.setHeader("User-Agent","Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:50.0) Gecko/20100101 Firefox/50.0");  //设置请求头消息
         CloseableHttpResponse response = httpClient.execute(httpGet);
         HttpEntity entity = response.getEntity();       //获取返回实体
@@ -32,6 +32,6 @@ public class CheckBaiduLinkAvailableUtil {
     }
 
 //    public static void main(String[] args) throws IOException {
-//        System.out.println(CheckBaiduLinkAvailableUtil.check("https://pan.baidu.com/s/1ZmhGcXm_ggEz6j2mN5hCYQ"));
+//        System.out.println(CheckBaiduLinkAvailableUtil.check(" https://pan.baidu.com/s/1ZmhGcXm_ggEz6j2mN5hCYQ"));
 //    }
 }

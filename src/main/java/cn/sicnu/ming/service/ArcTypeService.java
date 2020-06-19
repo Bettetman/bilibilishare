@@ -43,4 +43,6 @@ public interface ArcTypeService {
      * 根据id查询一条资源类型
      */
     public ArcType getById(Integer id);
+
+    public ArcType getByName(String name);
 }

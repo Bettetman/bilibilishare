@@ -1,7 +1,9 @@
 package cn.sicnu.ming.controller;
 
+import cn.sicnu.ming.entity.ArcType;
 import cn.sicnu.ming.entity.Article;
 import cn.sicnu.ming.entity.User;
+import cn.sicnu.ming.service.ArcTypeService;
 import cn.sicnu.ming.service.ArticleService;
 import cn.sicnu.ming.service.UserService;
 import cn.sicnu.ming.util.CheckBaiduLinkAvailableUtil;
@@ -43,9 +45,11 @@ public class UserController {
     @Resource
     private JavaMailSender mailSender;
 
-
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private ArcTypeService arcTypeService;
 
     @ResponseBody
     @RequestMapping("/register")
@@ -224,7 +228,7 @@ public class UserController {
             if(article.getPoints()==0){
                 article.setFree(true);                                  //积分为0 设置免费
             }
-            article.setState(1);                                        //审核状态
+            article.setState(1);//审核状态
             article.setClick(new Random().nextInt(5)+1);
             articleService.save(article);
             map.put("success",true);
