@@ -2,14 +2,19 @@ package cn.sicnu.ming.shiro.realm;
 
 import cn.sicnu.ming.entity.User;
 import cn.sicnu.ming.service.UserService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author frank ming
@@ -25,8 +30,17 @@ public class MyRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        String userName = (String) SecurityUtils.getSubject().getPrincipal();
+        User user = userService.findByUserName(userName);
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        Set<String> roles = new HashSet<>();
+        if("管理员".equals(user.getRoleName())){
+            roles.add("管理员");
+            authorizationInfo.addStringPermission("进入管理界面");
 
-        return null;
+        }
+        authorizationInfo.setRoles(roles);
+        return authorizationInfo ;
     }
     /**
      * 权限认证
