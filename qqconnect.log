@@ -1080,3 +1080,8 @@ Caused by: java.net.NoRouteToHostException: No route to host: connect
 0    INFO  [2020-06-21 12:38:16]  {dataSource-1} inited
 7285037 INFO  [2020-06-21 14:39:41]  {dataSource-1} closed
 7285938 INFO  [2020-06-21 14:39:42]  {dataSource-2} inited
+7636488 INFO  [2020-06-21 14:45:32]  {dataSource-2} closed
+7637348 INFO  [2020-06-21 14:45:33]  {dataSource-3} inited
+0    INFO  [2020-06-21 14:45:48]  {dataSource-1} inited
+4788705 INFO  [2020-06-21 16:05:37]  {dataSource-1} closed
+0    INFO  [2020-06-21 16:05:44]  {dataSource-1} inited

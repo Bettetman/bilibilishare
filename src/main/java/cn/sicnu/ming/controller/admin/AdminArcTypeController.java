@@ -1,6 +1,7 @@
 package cn.sicnu.ming.controller.admin;
 
 import cn.sicnu.ming.entity.ArcType;
+import cn.sicnu.ming.prepare.LoadData;
 import cn.sicnu.ming.service.ArcTypeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ import java.util.Map;
 public class AdminArcTypeController {
     @Autowired
     private ArcTypeService arcTypeService;
+
+
+    @Autowired
+    private LoadData loadData;
 
     @RequestMapping("/list")
     public Map<String,Object> list(@RequestParam(value = "page",required =false) Integer page,
@@ -76,8 +81,8 @@ public class AdminArcTypeController {
         for (int i = 0; i < split.length; i++) {
             arcTypeService.delete(Integer.parseInt(split[i]));
         }
+        loadData.loadDate();
         map.put("errorNo",0);
         return map;
     }
-
 }
