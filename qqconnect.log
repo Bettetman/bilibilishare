@@ -1085,3 +1085,19 @@ Caused by: java.net.NoRouteToHostException: No route to host: connect
 0    INFO  [2020-06-21 14:45:48]  {dataSource-1} inited
 4788705 INFO  [2020-06-21 16:05:37]  {dataSource-1} closed
 0    INFO  [2020-06-21 16:05:44]  {dataSource-1} inited
+0    INFO  [2020-06-21 23:50:01]  {dataSource-1} inited
+171811 INFO  [2020-06-21 23:52:53]  {dataSource-1} closed
+172721 INFO  [2020-06-21 23:52:54]  {dataSource-2} inited
+206140 INFO  [2020-06-21 23:53:27]  {dataSource-2} closed
+206958 INFO  [2020-06-21 23:53:28]  {dataSource-3} inited
+3638269 INFO  [2020-06-22 00:50:39]  {dataSource-3} closed
+3639230 INFO  [2020-06-22 00:50:40]  {dataSource-4} inited
+3832015 INFO  [2020-06-22 00:53:53]  {dataSource-4} closed
+3832971 INFO  [2020-06-22 00:53:54]  {dataSource-5} inited
+5561167 DEBUG [2020-06-22 01:22:42]  skip not validate connection.
+5679737 INFO  [2020-06-22 01:24:41]  {dataSource-5} closed
+5680623 INFO  [2020-06-22 01:24:42]  {dataSource-6} inited
+0    INFO  [2020-06-22 01:30:13]  {dataSource-1} inited
+347816 INFO  [2020-06-22 01:36:01]  {dataSource-1} closed
+348738 INFO  [2020-06-22 01:36:01]  {dataSource-2} inited
+0    INFO  [2020-06-22 01:38:39]  {dataSource-1} inited

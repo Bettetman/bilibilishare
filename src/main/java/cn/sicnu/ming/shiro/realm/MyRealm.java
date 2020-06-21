@@ -40,7 +40,10 @@ public class MyRealm extends AuthorizingRealm {
             authorizationInfo.addStringPermission("根据id查询资源类型实体");
             authorizationInfo.addStringPermission("添加或修改资源类型信息");
             authorizationInfo.addStringPermission("删除资源类型信息");
+            authorizationInfo.addStringPermission("查看资源信息");
             authorizationInfo.addStringPermission("分页查询资源信息列表");
+            authorizationInfo.addStringPermission("删除资源信息");
+            authorizationInfo.addStringPermission("审核资源");
 
         }
         authorizationInfo.setRoles(roles);
