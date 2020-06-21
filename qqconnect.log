@@ -1069,3 +1069,8 @@ Caused by: java.net.NoRouteToHostException: No route to host: connect
 0    INFO  [2020-06-20 01:03:25]  {dataSource-1} inited
 0    INFO  [2020-06-20 01:12:46]  {dataSource-1} inited
 0    INFO  [2020-06-20 01:16:15]  {dataSource-1} inited
+0    INFO  [2020-06-21 11:36:43]  {dataSource-1} inited
+321202 INFO  [2020-06-21 11:42:04]  {dataSource-1} closed
+322113 INFO  [2020-06-21 11:42:05]  {dataSource-2} inited
+0    INFO  [2020-06-21 11:50:43]  {dataSource-1} inited
+0    INFO  [2020-06-21 11:57:16]  {dataSource-1} inited
