@@ -86,7 +86,7 @@ function sjvip() {
 function jfcz() {
     layui.use('layer', function(){
         var layer = layui.layer;
-        layer.msg("充值积分，请联系管理员：1255879874@qq.com (QQ同号)", {
+        layer.msg("充值积分，请联系管理员：11451287@qq.com (QQ同号)", {
             time: 20000, //20s后自动关闭
             btn: ['明白了']
         });

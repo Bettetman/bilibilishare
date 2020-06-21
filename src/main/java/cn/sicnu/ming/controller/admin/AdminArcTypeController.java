@@ -1,6 +1,8 @@
 package cn.sicnu.ming.controller.admin;
 
+import cn.sicnu.ming.entity.ArcType;
 import cn.sicnu.ming.service.ArcTypeService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,10 +39,45 @@ public class AdminArcTypeController {
     }
 
     @RequestMapping("/findById")
+    @RequiresPermissions(value = "根据id查询资源类型实体")
     public Map<String,Object> findById(Integer arcTypeId){
         Map<String,Object> map = new HashMap<>();
         map.put("data",arcTypeService.getById(arcTypeId));
         map.put("errorNo",0);
         return map;
     }
+
+    @RequestMapping("/save")
+    @RequiresPermissions(value = "添加或修改资源类型信息")
+    public Map<String,Object> save(ArcType arcType){
+        Map<String,Object> map = new HashMap<>();
+        arcTypeService.save(arcType);
+        map.put("errorNo",0);
+        return map;
+    }
+
+
+//    @RequestMapping("/delete")
+//    public Map<String,Object> delete(ArcType arcType){
+//        Map<String,Object> map = new HashMap<>();
+//        if (arcType == null && arcTypeService.getById(arcType.getArcTypeId())==null){
+//            map.put("errorNo",1);
+//        }else {
+//        arcTypeService.delete(arcType.getArcTypeId());
+//        map.put("errorNo",0);
+//        }
+//        return map;
+//    }
+    @RequestMapping("/delete")
+    @RequiresPermissions(value = "删除资源类型信息")
+    public Map<String,Object> save(@RequestParam(value = "arcTypeId") String arcTypeId){
+        Map<String,Object> map = new HashMap<>();
+        String[] split = arcTypeId.split(",");
+        for (int i = 0; i < split.length; i++) {
+            arcTypeService.delete(Integer.parseInt(split[i]));
+        }
+        map.put("errorNo",0);
+        return map;
+    }
+
 }

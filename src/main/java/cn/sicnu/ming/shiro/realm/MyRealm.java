@@ -37,6 +37,9 @@ public class MyRealm extends AuthorizingRealm {
         if("管理员".equals(user.getRoleName())){
             roles.add("管理员");
             authorizationInfo.addStringPermission("进入管理界面");
+            authorizationInfo.addStringPermission("根据id查询资源类型实体");
+            authorizationInfo.addStringPermission("添加或修改资源类型信息");
+            authorizationInfo.addStringPermission("删除资源类型信息");
 
         }
         authorizationInfo.setRoles(roles);
