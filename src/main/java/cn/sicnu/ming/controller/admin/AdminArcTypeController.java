@@ -3,9 +3,11 @@ package cn.sicnu.ming.controller.admin;
 import cn.sicnu.ming.entity.ArcType;
 import cn.sicnu.ming.prepare.LoadData;
 import cn.sicnu.ming.service.ArcTypeService;
+import cn.sicnu.ming.util.ConstUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +29,9 @@ public class AdminArcTypeController {
 
     @Autowired
     private LoadData loadData;
+
+    @Autowired
+    private RedisTemplate<Object,Object> redisTemplate;
 
     @RequestMapping("/list")
     public Map<String,Object> list(@RequestParam(value = "page",required =false) Integer page,
@@ -60,8 +65,6 @@ public class AdminArcTypeController {
         map.put("errorNo",0);
         return map;
     }
-
-
 //    @RequestMapping("/delete")
 //    public Map<String,Object> delete(ArcType arcType){
 //        Map<String,Object> map = new HashMap<>();
@@ -81,6 +84,7 @@ public class AdminArcTypeController {
         for (int i = 0; i < split.length; i++) {
             arcTypeService.delete(Integer.parseInt(split[i]));
         }
+        redisTemplate.delete(ConstUtil.ALL_ARC_TYPE_NAME);
         loadData.loadDate();
         map.put("errorNo",0);
         return map;

@@ -1,4 +1,4 @@
-0   ERROR [2020-06-18 23:34:17]  create connection error
+   ERROR [2020-06-18 23:34:17]  create connection error
 com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
 
 Last packet sent to the server was 0 ms ago.
@@ -1122,3 +1122,49 @@ Caused by: java.net.NoRouteToHostException: No route to host: connect
 8860892 INFO  [2020-06-22 23:37:06]  {dataSource-2} inited
 8970453 INFO  [2020-06-22 23:38:56]  {dataSource-2} closed
 8971386 INFO  [2020-06-22 23:38:57]  {dataSource-3} inited
+13075072 INFO  [2020-06-23 00:47:21]  {dataSource-3} closed
+13076099 INFO  [2020-06-23 00:47:22]  {dataSource-4} inited
+13082576 INFO  [2020-06-23 00:47:28]  {dataSource-4} closed
+13083642 INFO  [2020-06-23 00:47:29]  {dataSource-5} inited
+13194698 INFO  [2020-06-23 00:49:20]  {dataSource-5} closed
+13198769 INFO  [2020-06-23 00:49:24]  {dataSource-6} inited
+13710335 INFO  [2020-06-23 00:57:56]  {dataSource-6} closed
+13711421 INFO  [2020-06-23 00:57:57]  {dataSource-7} inited
+13732058 INFO  [2020-06-23 00:58:18]  {dataSource-7} closed
+13733021 INFO  [2020-06-23 00:58:19]  {dataSource-8} inited
+13831631 INFO  [2020-06-23 00:59:57]  {dataSource-8} closed
+13832557 INFO  [2020-06-23 00:59:58]  {dataSource-9} inited
+13864377 INFO  [2020-06-23 01:00:30]  {dataSource-9} closed
+13865354 INFO  [2020-06-23 01:00:31]  {dataSource-10} inited
+14102320 INFO  [2020-06-23 01:04:28]  {dataSource-10} closed
+14103424 INFO  [2020-06-23 01:04:29]  {dataSource-11} inited
+0    INFO  [2020-06-23 01:22:28]  {dataSource-1} inited
+901344 INFO  [2020-06-23 01:37:30]  {dataSource-1} closed
+902304 INFO  [2020-06-23 01:37:31]  {dataSource-2} inited
+1833413 INFO  [2020-06-23 01:53:02]  {dataSource-2} closed
+1834333 INFO  [2020-06-23 01:53:03]  {dataSource-3} inited
+2045245 INFO  [2020-06-23 01:56:34]  {dataSource-3} closed
+2046208 INFO  [2020-06-23 01:56:35]  {dataSource-4} inited
+2073882 INFO  [2020-06-23 01:57:02]  {dataSource-4} closed
+2074834 INFO  [2020-06-23 01:57:03]  {dataSource-5} inited
+2310601 INFO  [2020-06-23 02:00:59]  {dataSource-5} closed
+2311481 INFO  [2020-06-23 02:01:00]  {dataSource-6} inited
+2420573 INFO  [2020-06-23 02:02:49]  {dataSource-6} closed
+2421475 INFO  [2020-06-23 02:02:50]  {dataSource-7} inited
+2450718 INFO  [2020-06-23 02:03:19]  {dataSource-7} closed
+2451613 INFO  [2020-06-23 02:03:20]  {dataSource-8} inited
+2598958 INFO  [2020-06-23 02:05:47]  {dataSource-8} closed
+2599922 INFO  [2020-06-23 02:05:48]  {dataSource-9} inited
+2633313 INFO  [2020-06-23 02:06:22]  {dataSource-9} closed
+2634147 INFO  [2020-06-23 02:06:22]  {dataSource-10} inited
+0    INFO  [2020-06-23 02:06:29]  {dataSource-1} inited
+0    INFO  [2020-06-23 02:12:09]  {dataSource-1} inited
+5822 INFO  [2020-06-23 02:12:15]  {dataSource-1} closed
+0    INFO  [2020-06-23 02:12:36]  {dataSource-1} inited
+5743 INFO  [2020-06-23 02:12:42]  {dataSource-1} closed
+0    INFO  [2020-06-23 02:16:45]  {dataSource-1} inited
+7496 INFO  [2020-06-23 02:16:53]  {dataSource-1} closed
+0    INFO  [2020-06-23 02:21:37]  {dataSource-1} inited
+5985 INFO  [2020-06-23 02:21:43]  {dataSource-1} closed
+0    INFO  [2020-06-23 02:22:13]  {dataSource-1} inited
+5651 INFO  [2020-06-23 02:22:19]  {dataSource-1} closed

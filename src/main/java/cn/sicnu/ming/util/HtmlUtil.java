@@ -73,4 +73,42 @@ public class HtmlUtil {
         pageCode.append("</div>");
         return pageCode.toString();
     }
+    /**
+     * lucene查询分页代码
+     * @param targetUrl     请求路径
+     * @param totalPage     总页数
+     * @param currentPage   当前页
+     * @param msg           没查到数据的时候的显示内容
+     * @return
+     */
+    public static String getPagation2(String targetUrl,int totalPage,int currentPage, String msg){
+        StringBuffer pageCode = new StringBuffer();
+        pageCode.append("<div class=\"laypage-main\">");
+        if(totalPage>0){
+            pageCode.append("<a href=\""+targetUrl+"\">首页</a>");
+        }
+        if(currentPage!=1){
+            pageCode.append("<a style=\"display: inline-block;\" href=\""+targetUrl+"&page=" + (currentPage - 1) + "\">上一页</a>");
+        }
+        for(int i = currentPage - 3;i <=currentPage +3;i++){
+            if(i<1||i>totalPage){
+                continue;
+            }
+            if(i == currentPage){
+                pageCode.append("<span class=\"laypage-curr\">" + i +"</span>");
+            }else{
+                pageCode.append("<a href=\""+targetUrl+"&page="+i+"\">"+i+"</a>");
+            }
+        }
+        if(currentPage<totalPage){
+            pageCode.append("<a style=\"display: inline-block;\" href=\""+targetUrl+"&page=" + (currentPage + 1) + "\">下一页</a>");
+        }
+        if(totalPage>0){
+            pageCode.append("<a href=\""+targetUrl+"&page="+totalPage+"\">尾页</a>");
+        }else{
+            pageCode.append("<span>"+msg+"</span>");
+        }
+        pageCode.append("</div>");
+        return pageCode.toString();
+    }
 }

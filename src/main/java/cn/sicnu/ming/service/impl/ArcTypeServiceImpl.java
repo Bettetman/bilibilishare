@@ -2,6 +2,7 @@ package cn.sicnu.ming.service.impl;
 
 import cn.sicnu.ming.dao.ArcTypeRespository;
 import cn.sicnu.ming.entity.ArcType;
+import cn.sicnu.ming.prepare.LoadData;
 import cn.sicnu.ming.service.ArcTypeService;
 import cn.sicnu.ming.util.ConstUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.util.List;
  * @createTime 20200618 12:38
  * @description arctype的方法实现
  */
-@Service(value = "ArcTypeService")
+@Service(value = "arcTypeService")
 public class ArcTypeServiceImpl implements ArcTypeService {
 
     @Autowired
@@ -26,6 +27,9 @@ public class ArcTypeServiceImpl implements ArcTypeService {
 
     @Autowired
     private RedisTemplate<Object,Object> redisTemplate;
+
+    @Autowired
+    private LoadData loadData;
 
     @Override
     public List<ArcType> list(Integer page, Integer pageSize, Sort.Direction direction, String... properties) {
@@ -38,7 +42,13 @@ public class ArcTypeServiceImpl implements ArcTypeService {
         if (redisTemplate.hasKey(ConstUtil.ALL_ARC_TYPE_NAME)){
             return redisTemplate.opsForList().range(ConstUtil.ALL_ARC_TYPE_NAME,0,-1);
         }else{
-            return arcTypeRespository.findAll(Sort.by(direction,properties));
+            List<ArcType> list = arcTypeRespository.findAll(Sort.by(direction, properties));
+            if (list != null && list.size() > 0) {
+                for (int i=0;i<list.size();i++){
+                    redisTemplate.opsForList().rightPush(ConstUtil.ALL_ARC_TYPE_NAME,list.get(i));
+                }
+            }
+            return list;
         }
     }
 
@@ -49,15 +59,17 @@ public class ArcTypeServiceImpl implements ArcTypeService {
 
     @Override
     public void save(ArcType arcType) {
-        Boolean flag = false;
-        if (arcType.getArcTypeId()==null){
+        boolean flag = false;
+        if(arcType.getArcTypeId()==null){
             flag = true;
         }
         arcTypeRespository.save(arcType);
-        if (flag){
+        if(flag){               //新增类型
             redisTemplate.opsForList().rightPush(ConstUtil.ALL_ARC_TYPE_NAME,arcType);
+        }else{                  //修改类型
+            redisTemplate.delete(ConstUtil.ALL_ARC_TYPE_NAME);
         }
-
+        loadData.loadDate();
     }
 
     @Override
