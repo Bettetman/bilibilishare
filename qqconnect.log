@@ -1112,3 +1112,13 @@ Caused by: java.net.NoRouteToHostException: No route to host: connect
 0    INFO  [2020-06-22 15:50:42]  {dataSource-1} inited
 5796 INFO  [2020-06-22 15:50:48]  {dataSource-1} closed
 0    INFO  [2020-06-22 15:52:10]  {dataSource-1} inited
+1    INFO  [2020-06-22 16:57:06]  {dataSource-1} inited
+285110 INFO  [2020-06-22 17:01:51]  {dataSource-1} closed
+286230 INFO  [2020-06-22 17:01:52]  {dataSource-2} inited
+7268589 INFO  [2020-06-22 18:58:15]  {dataSource-2} closed
+7269539 INFO  [2020-06-22 18:58:16]  {dataSource-3} inited
+0    INFO  [2020-06-22 21:09:25]  {dataSource-1} inited
+8859815 INFO  [2020-06-22 23:37:05]  {dataSource-1} closed
+8860892 INFO  [2020-06-22 23:37:06]  {dataSource-2} inited
+8970453 INFO  [2020-06-22 23:38:56]  {dataSource-2} closed
+8971386 INFO  [2020-06-22 23:38:57]  {dataSource-3} inited
