@@ -1101,3 +1101,14 @@ Caused by: java.net.NoRouteToHostException: No route to host: connect
 347816 INFO  [2020-06-22 01:36:01]  {dataSource-1} closed
 348738 INFO  [2020-06-22 01:36:01]  {dataSource-2} inited
 0    INFO  [2020-06-22 01:38:39]  {dataSource-1} inited
+0    INFO  [2020-06-22 02:27:18]  {dataSource-1} inited
+485661 INFO  [2020-06-22 02:35:24]  {dataSource-1} closed
+0    INFO  [2020-06-22 14:44:29]  {dataSource-1} inited
+0    INFO  [2020-06-22 14:57:45]  {dataSource-1} inited
+0    INFO  [2020-06-22 15:47:55]  {dataSource-1} inited
+6859 INFO  [2020-06-22 15:48:02]  {dataSource-1} closed
+0    INFO  [2020-06-22 15:48:35]  {dataSource-1} inited
+5910 INFO  [2020-06-22 15:48:41]  {dataSource-1} closed
+0    INFO  [2020-06-22 15:50:42]  {dataSource-1} inited
+5796 INFO  [2020-06-22 15:50:48]  {dataSource-1} closed
+0    INFO  [2020-06-22 15:52:10]  {dataSource-1} inited

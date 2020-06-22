@@ -34,4 +34,7 @@ public class ConstUtil {
     //首页模块资源数
     public static final Integer ARTICLE_NUM= 10;
 
+    //页面大小
+    public static final Integer PAGE_SIZE = 10;
+
 }

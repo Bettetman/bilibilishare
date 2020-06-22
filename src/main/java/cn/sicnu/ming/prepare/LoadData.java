@@ -44,6 +44,6 @@ public class LoadData  implements CommandLineRunner {
      */
     public void loadDate(){
         application.setAttribute(ConstUtil.ARC_TYPE_LIST,arcTypeService.listAll(Sort.Direction.ASC,"sort"));       //所有资源分类
-        application.setAttribute(ConstUtil.CLICK_ARTICLE,articleService.getHotArticle(ConstUtil.ARTICLE_NUM));
+//        application.setAttribute(ConstUtil.CLICK_ARTICLE,articleService.getHotArticle(ConstUtil.ARTICLE_NUM));
     }
 }

@@ -12,6 +12,10 @@
 </head>
 <body>
 <div th:replace="common/header::#h"></div>
-<div>hello</div>
+<div class="fly-panel fly-column" style="height: auto;">
+    <div class="layui-container">
+        <ul class="layui-clear" th:utext="${arcTypeStr}"></ul>
+    </div>
+</div>
 </body>
 </html>
