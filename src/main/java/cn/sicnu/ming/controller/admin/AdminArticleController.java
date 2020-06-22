@@ -1,18 +1,21 @@
 package cn.sicnu.ming.controller.admin;
 
 import cn.sicnu.ming.entity.Article;
-import cn.sicnu.ming.entity.Message;
+import cn.sicnu.ming.lucene.ArticleIndex;
 import cn.sicnu.ming.service.ArticleService;
+import cn.sicnu.ming.util.StringUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +29,10 @@ public class AdminArticleController {
 
     @Autowired
     private ArticleService articleService;
+
+
+    @Autowired
+    private ArticleIndex articleIndex;
 
     @RequestMapping(value = "/list")
     @RequiresPermissions("分页查询资源信息列表")
@@ -105,4 +112,25 @@ public class AdminArticleController {
         return map;
     }
 
+
+
+    @ResponseBody
+    @RequestMapping(value = "/genAllIndex")
+    @RequiresPermissions(value = "生成所有资源索引")
+    public boolean genAllIndex(){
+        List<Article> articleList = articleService.listStatePass();
+        if(articleList==null||articleList.size()==0){
+            return false;
+        }
+        for (Article article:articleList){
+            try {
+                article.setContentNoTag(StringUtil.stripHtml(article.getContent()));
+                articleIndex.addIndex(article);
+            }catch (Exception e){
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
+    }
 }

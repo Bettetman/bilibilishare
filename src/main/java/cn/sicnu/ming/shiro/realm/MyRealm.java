@@ -44,6 +44,7 @@ public class MyRealm extends AuthorizingRealm {
             authorizationInfo.addStringPermission("分页查询资源信息列表");
             authorizationInfo.addStringPermission("删除资源信息");
             authorizationInfo.addStringPermission("审核资源");
+            authorizationInfo.addStringPermission("生成所有资源索引");
 
         }
         authorizationInfo.setRoles(roles);
