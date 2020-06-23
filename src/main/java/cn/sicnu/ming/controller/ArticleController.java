@@ -9,10 +9,7 @@ import cn.sicnu.ming.util.HtmlUtil;
 import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -87,9 +84,6 @@ public class ArticleController {
 
 
     //资源详情显示
-    /**
-     * 资源详情
-     */
     @RequestMapping(value = "/detail/{articleId}")
     public ModelAndView detail(@PathVariable(value = "articleId",required = true)String articleId) throws IOException, org.apache.lucene.queryparser.classic.ParseException {
         ModelAndView mav = new ModelAndView();
@@ -112,4 +106,15 @@ public class ArticleController {
         mav.setViewName("/detail");
         return mav;
     }
+
+    /**
+     * 判断资源是否为免费资源
+     */
+    @ResponseBody
+    @RequestMapping("/isFree")
+    public boolean isFree(Integer articleId){
+        Article article = articleService.getById(articleId);
+        return article.isFree();
+    }
+
 }

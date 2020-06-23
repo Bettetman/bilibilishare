@@ -34,8 +34,8 @@
                         <img th:src="'/static/img/'+${article.user.headPortrait}" th:alt="${article.user.nickname}">
                     </a>
                     <div th:if="${article.useful == true}" style="float:right;" class="layui-hide-xs">
-                        <button class="layui-btn layui-btn-radius layui-btn-warm" onclick="download()">&nbsp;&nbsp;立即下载&nbsp;&nbsp;</button>
-                        <button class="layui-btn layui-btn-radius" style="background-color:red;" onclick="vipDownload()">&nbsp;&nbsp;VIP免积分下载&nbsp;&nbsp;</button>
+                        <button class="layui-btn layui-btn-radius layui-btn-warm" onclick="download()">立即下载</button>
+                        <button class="layui-btn layui-btn-radius" style="background-color:red;" onclick="vipDownload()">VIP免积分下载</button>
                     </div>
                     <div th:if="${article.useful == false}" style="float:right;" class="layui-hide-xs">
                         <font color="red">该资源链接已失效，暂时无法提供下载。</font>
@@ -110,7 +110,7 @@
                     <dd th:each="link :${application.linknList}">
                         <a th:href="@{${link.linkUrl}}" target="_blank" th:text="${link.linkName}"></a>
                     </dd>
-                    <a href="http://wpa.qq.com/msgrd?v=3&uin=11451287&site=qq&menu=yes" class="fly-link">申请友情链接</a>
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=1255879874&site=qq&menu=yes" class="fly-link">申请友情链接</a>
                 </dl>
             </div>
         </div>

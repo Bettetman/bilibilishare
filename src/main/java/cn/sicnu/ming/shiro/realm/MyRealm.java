@@ -36,15 +36,34 @@ public class MyRealm extends AuthorizingRealm {
         Set<String> roles = new HashSet<>();
         if("管理员".equals(user.getRoleName())){
             roles.add("管理员");
-            authorizationInfo.addStringPermission("进入管理界面");
+            authorizationInfo.addStringPermission("进入管理员页面");
             authorizationInfo.addStringPermission("根据id查询资源类型实体");
             authorizationInfo.addStringPermission("添加或修改资源类型信息");
             authorizationInfo.addStringPermission("删除资源类型信息");
-            authorizationInfo.addStringPermission("查看资源信息");
             authorizationInfo.addStringPermission("分页查询资源信息列表");
             authorizationInfo.addStringPermission("删除资源信息");
+            authorizationInfo.addStringPermission("查看资源信息");
             authorizationInfo.addStringPermission("审核资源");
+            authorizationInfo.addStringPermission("修改是否热门资源");
+            authorizationInfo.addStringPermission("修改是否免费资源");
             authorizationInfo.addStringPermission("生成所有资源索引");
+            authorizationInfo.addStringPermission("分页查询评论信息");
+            authorizationInfo.addStringPermission("分页查询用户信息列表");
+            authorizationInfo.addStringPermission("查看资源信息");
+            authorizationInfo.addStringPermission("查看评论信息");
+            authorizationInfo.addStringPermission("删除评论信息");
+            authorizationInfo.addStringPermission("审核评论");
+            authorizationInfo.addStringPermission("修改用户vip状态");
+            authorizationInfo.addStringPermission("修改用户vip等级");
+            authorizationInfo.addStringPermission("修改用户封禁状态");
+            authorizationInfo.addStringPermission("重置用户密码");
+            authorizationInfo.addStringPermission("充值积分");
+            authorizationInfo.addStringPermission("管理员修改登录密码");
+            authorizationInfo.addStringPermission("安全退出");
+            authorizationInfo.addStringPermission("分页查询友情链接列表");
+            authorizationInfo.addStringPermission("根据linkId查询友情链接");
+            authorizationInfo.addStringPermission("添加或修改友情链接");
+            authorizationInfo.addStringPermission("批量删除友情链接");
 
         }
         authorizationInfo.setRoles(roles);

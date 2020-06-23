@@ -27,7 +27,7 @@ public class LoadData  implements CommandLineRunner {
 
     @Autowired
     private ArticleService articleService;
-
+//
 //    @Autowired
 //    private LinkService linkService;
 
@@ -44,6 +44,9 @@ public class LoadData  implements CommandLineRunner {
      */
     public void loadDate(){
        application.setAttribute(ConstUtil.ARC_TYPE_LIST,arcTypeService.listAll(Sort.Direction.ASC,"sort"));       //所有资源分类
-
+  //       application.setAttribute(ConstUtil.LINK_LIST,linkService.listAll(Sort.Direction.ASC,"sort"));              //所有友情链接
+        application.setAttribute(ConstUtil.CLICK_ARTICLE,articleService.getHotArticle(ConstUtil.ARTICLE_NUM));                    //热门资源
+        application.setAttribute(ConstUtil.NEW_ARTICLE,articleService.getNewArticle(ConstUtil.ARTICLE_NUM));                      //最新资源
+        application.setAttribute(ConstUtil.RANDOM_ARTICLE,articleService.getRandomArticle(ConstUtil.ARTICLE_NUM));                //随机资源（热搜推荐）
     }
 }

@@ -109,7 +109,7 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:9.0.36" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish:jakarta.el:3.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.36" level="project" />
-    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.6" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.47" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20200518" level="project" />
     <orderEntry type="library" name="Maven: net.sf.json-lib:json-lib:jdk15:2.4" level="project" />
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.0" level="project" />

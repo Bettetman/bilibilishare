@@ -32,9 +32,16 @@ public class ConstUtil {
     public static final String CLICK_ARTICLE = "clickArticle";
 
     //首页模块资源数
-    public static final Integer ARTICLE_NUM= 10;
+    public static final Integer ARTICLE_NUM = 5;
 
     //页面大小
     public static final Integer PAGE_SIZE = 10;
 
+    //所有友情链接
+    public static final String LINK_LIST = "linknList";
+
+    //最新资源
+    public static final String NEW_ARTICLE = "newArticle";
+    //随机资源
+    public static final String RANDOM_ARTICLE = "randomArticle";
 }

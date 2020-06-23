@@ -3,8 +3,10 @@ package cn.sicnu.ming.controller;
 import cn.sicnu.ming.entity.ArcType;
 import cn.sicnu.ming.entity.Article;
 import cn.sicnu.ming.entity.User;
+import cn.sicnu.ming.entity.UserDownload;
 import cn.sicnu.ming.service.ArcTypeService;
 import cn.sicnu.ming.service.ArticleService;
+import cn.sicnu.ming.service.UserDownService;
 import cn.sicnu.ming.service.UserService;
 import cn.sicnu.ming.util.CheckBaiduLinkAvailableUtil;
 import cn.sicnu.ming.util.ConstUtil;
@@ -51,6 +53,9 @@ public class UserController {
 
     @Autowired
     private ArcTypeService arcTypeService;
+
+    @Autowired
+    private UserDownService userDownService;
 
     @ResponseBody
     @RequestMapping("/register")
@@ -295,6 +300,74 @@ public class UserController {
             map.put("errorInfo","您不是资源所有者，不能删除！");
         }
         return map;
+    }
+
+    /**
+     * 判断某资源是否被当前用户下载过
+     */
+    @ResponseBody
+    @RequestMapping("/userDownloadExits")
+    public boolean userDownloadExits(Integer articleId,HttpSession session){
+        User currentUser = (User) session.getAttribute(ConstUtil.CURRCENT_USER);
+        Integer count = userDownService.getCountByUidAndByAid(currentUser.getUserId(),articleId);
+        if(count>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * 判断用户是否有足够的积分下载资源
+     */
+    @ResponseBody
+    @RequestMapping("/userPoints")
+    public boolean userPoints(Integer points,HttpSession session){
+        User currentUser = (User) session.getAttribute(ConstUtil.CURRCENT_USER);
+        Integer userPoints = currentUser.getPoints();
+        if(userPoints>points){             //积分足够
+            return true;
+        }else{                              //积分不够
+            return false;
+        }
+    }
+
+    /**
+     * 跳转到用户下载页面
+     */
+    @RequestMapping("/userDownloadPage/{articleId}")
+    public ModelAndView userDownloadPage(@PathVariable("articleId")Integer articleId,HttpSession session){
+        Article article = articleService.getById(articleId);
+        //查不到或审核不通过直接返回
+        if(article==null||article.getState().intValue()!=2){
+            return null;
+        }
+        User userCurrent = (User) session.getAttribute(ConstUtil.CURRCENT_USER);
+        Integer count = userDownService.getCountByUidAndByAid(userCurrent.getUserId(),articleId);
+        if (count == 0) {                                                       //未下载过
+            if (!article.isFree()) {
+                if (userCurrent.getPoints() - article.getPoints() < 0) {        //积分不够
+                    return null;
+                }
+                //扣除积分，并存入数据库
+                userCurrent.setPoints(userCurrent.getPoints() - article.getPoints());
+                userService.save(userCurrent);
+                //资源分享者获得相应积分
+                User articleUser = article.getUser();
+                articleUser.setPoints(articleUser.getPoints()+article.getPoints());
+                userService.save(articleUser);
+            }
+            //保存用户下载相关信息
+            UserDownload userDownload = new UserDownload();
+            userDownload.setArticle(article);
+            userDownload.setUser(userCurrent);
+            userDownload.setDownloadDate(new Date());
+            userDownService.save(userDownload);
+        }
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("article",article);
+        mav.setViewName("/article/DownloadPage");
+        return mav;
     }
 }
 
