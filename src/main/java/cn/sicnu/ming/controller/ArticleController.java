@@ -83,4 +83,33 @@ public class ArticleController {
         mav.addObject("pageStr",HtmlUtil.getPagation(targetUrl,totalPage,page,msg));
         return mav;
     }
+
+
+
+    //资源详情显示
+    /**
+     * 资源详情
+     */
+    @RequestMapping(value = "/detail/{articleId}")
+    public ModelAndView detail(@PathVariable(value = "articleId",required = true)String articleId) throws IOException, org.apache.lucene.queryparser.classic.ParseException {
+        ModelAndView mav = new ModelAndView();
+        String repalce = articleId.replace(".html","");
+        articleService.updateClick(Integer.parseInt(repalce));
+        Article article = articleService.getById(Integer.parseInt(repalce));
+        if (article.getState() != 2) {
+            return null;
+        }
+        mav.addObject("article",article);
+        //类型的html代码
+        List arcTypeList = arcTypeService.listAll(Sort.Direction.ASC,"sort");
+        mav.addObject("arcTypeStr", HtmlUtil.getArcTypeStr(article.getArcType().getArcTypeId().toString(),arcTypeList));
+        //通过lucene分词查找相似资源
+        List<Article> articleList = articleIndex.searchNoHighLightet(article.getName().replace("视频","")
+                .replace("教程","").replace("下载",""));
+        if (articleList != null&&articleList.size()>0) {
+            mav.addObject("similarityArticleList",articleList);
+        }
+        mav.setViewName("/detail");
+        return mav;
+    }
 }
