@@ -365,5 +365,39 @@ public class UserController {
         mav.setViewName("/article/DownloadPage");
         return mav;
     }
+
+    //vip下载
+    @RequestMapping("/userVipDownloadPage/{articleId}")
+    public ModelAndView userVipDownloadPage(@PathVariable("articleId")Integer articleId,HttpSession session){
+        Article article = articleService.getById(articleId);
+        //资源查不到或审核未通过,直接返回
+        if(article==null||article.getState().intValue()!=2){
+            return null;
+        }
+        User userCurrent = (User) session.getAttribute(ConstUtil.CURRCENT_USER);
+        //用户不是VIP,直接返回
+        if(!userCurrent.isVip()){
+            return null;
+        }
+        Integer count = userDownService.getCountByUidAndByAid(userCurrent.getUserId(),articleId);
+        if (count == 0) {              //未下载过
+            //保存用户下载相关信息
+            UserDownload userDownload = new UserDownload();
+            userDownload.setArticle(article);
+            userDownload.setUser(userCurrent);
+            userDownload.setDownloadDate(new Date());
+            userDownService.save(userDownload);
+        }
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("article",article);
+        mav.setViewName("/article/DownloadPage");
+        return mav;
+    }
+    @ResponseBody
+    @RequestMapping("/isVIP")
+    public boolean isVIP(HttpSession session){
+        User currentUser = (User) session.getAttribute(ConstUtil.CURRCENT_USER);
+        return currentUser.isVip();
+    }
 }
 
