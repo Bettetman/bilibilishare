@@ -302,9 +302,7 @@ public class UserController {
         return map;
     }
 
-    /**
-     * 判断某资源是否被当前用户下载过
-     */
+    //判断某资源是否被当前用户下载过
     @ResponseBody
     @RequestMapping("/userDownloadExits")
     public boolean userDownloadExits(Integer articleId,HttpSession session){
@@ -317,9 +315,8 @@ public class UserController {
         }
     }
 
-    /**
-     * 判断用户是否有足够的积分下载资源
-     */
+
+    //判断用户是否有足够的积分下载资源
     @ResponseBody
     @RequestMapping("/userPoints")
     public boolean userPoints(Integer points,HttpSession session){
@@ -332,9 +329,8 @@ public class UserController {
         }
     }
 
-    /**
-     * 跳转到用户下载页面
-     */
+
+    //跳转到用户下载页面
     @RequestMapping("/userDownloadPage/{articleId}")
     public ModelAndView userDownloadPage(@PathVariable("articleId")Integer articleId,HttpSession session){
         Article article = articleService.getById(articleId);

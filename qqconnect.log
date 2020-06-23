@@ -1216,3 +1216,17 @@ Caused by: java.net.NoRouteToHostException: No route to host: connect
 0    INFO  [2020-06-23 22:39:22]  {dataSource-1} inited
 6044 INFO  [2020-06-23 22:39:28]  {dataSource-1} closed
 0    INFO  [2020-06-23 22:47:38]  {dataSource-1} inited
+759513 INFO  [2020-06-23 23:00:17]  {dataSource-1} closed
+760482 INFO  [2020-06-23 23:00:18]  {dataSource-2} inited
+0    INFO  [2020-06-23 23:15:53]  {dataSource-1} inited
+216305 INFO  [2020-06-23 23:19:29]  {dataSource-1} closed
+0    INFO  [2020-06-23 23:19:36]  {dataSource-1} inited
+0    INFO  [2020-06-23 23:26:03]  {dataSource-1} inited
+0    INFO  [2020-06-23 23:32:42]  {dataSource-1} inited
+0    INFO  [2020-06-23 23:36:31]  {dataSource-1} inited
+0    INFO  [2020-06-23 23:40:18]  {dataSource-1} inited
+0    INFO  [2020-06-23 23:41:18]  {dataSource-1} inited
+0    INFO  [2020-06-23 23:44:54]  {dataSource-1} inited
+0    INFO  [2020-06-23 23:46:11]  {dataSource-1} inited
+285108 INFO  [2020-06-23 23:50:56]  {dataSource-1} closed
+0    INFO  [2020-06-23 23:51:03]  {dataSource-1} inited
