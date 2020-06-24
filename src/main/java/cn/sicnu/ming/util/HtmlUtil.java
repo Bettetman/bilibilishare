@@ -1,6 +1,7 @@
 package cn.sicnu.ming.util;
 
 import cn.sicnu.ming.entity.ArcType;
+import cn.sicnu.ming.entity.Comment;
 
 import java.util.List;
 
@@ -110,5 +111,44 @@ public class HtmlUtil {
         }
         pageCode.append("</div>");
         return pageCode.toString();
+    }
+
+    /**
+     * 拼接评论代码
+     */
+    public static String getCommentPageStr(List<Comment> commentList){
+        StringBuffer commentCode = new StringBuffer();
+        if(commentList==null||commentList.size()==0){
+            return "";
+        }
+        for(Comment comment:commentList){
+            commentCode.append("<li class=\"jieda-daan\">\n" +
+                    "   <div class=\"detail-about detail-about-reply\">\n" +
+                    "       <a class=\"fly-avatar\" href=\"\">\n"   +
+                    "           <img src=\"/static/img/" + comment.getUser().getHeadPortrait() + "\" alt=\""+comment.getUser().getNickname()+"\" />\n" +
+                    "       </a>\n" +
+                    "   <div class=\"fly-detail-user\">\n" +
+                    "       <a href='' class='fly-link'>\n" +
+                    "           <cite>"+comment.getUser().getNickname()+"</cite>\n");
+            if(comment.getUser().isVip()){
+                commentCode.append("<i class='iconfont icon-renzheng' title='会员认证'></i>\n" +
+                        "<i class='layui-badge fly-badge-vip'>VIP" + comment.getUser().getVipGrade() + "</i>\n");
+            }
+            commentCode.append("       </a>\n");
+            //如果作者和评论者是同一个人，显示作者标识
+            if(comment.getUser().getUserId() == comment.getArticle().getUser().getUserId()){
+                commentCode.append("<span>（作者）</span>\n");
+            }
+            commentCode.append("</div>\n\n");
+            commentCode.append("<div class='detail-hits'>\n" +
+                    "   <span>"+DateUtil.formatDate(comment.getCommentDate(),"yyyy-MM-dd HH:mm")+"</span>\n" +
+                    "</div>\n" +
+                    "</div>\n");
+            commentCode.append("<div class='detail-body jieda-body photos'>\n " +
+                    "    <p>" + comment.getContent()+"</p>\n" +
+                    "</div>\n"+
+                    "</li>");
+        }
+        return commentCode.toString();
     }
 }

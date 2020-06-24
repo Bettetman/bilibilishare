@@ -21,4 +21,9 @@ public class StringUtil {
         content = content.replaceAll(" ","");
         return content;
     }
+
+    //转义大于小于
+    public static String esc(String content){
+        return content.replace("<","&lt;").replace(">","&gt;");
+    }
 }
