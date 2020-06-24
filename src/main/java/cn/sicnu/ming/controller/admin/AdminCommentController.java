@@ -71,5 +71,24 @@ public class AdminCommentController {
         map.put("errorNo",0);
         return map;
     }
-
+    /**
+     * 审核评论
+     */
+    @RequestMapping(value = "/updateState")
+    @RequiresPermissions(value = "审核评论")
+    public Map<String,Object> updateState(Comment comment){
+        Map<String ,Object> map =new HashMap<>();
+        Comment oldComment = commentService.getById(comment.getCommentId());
+        if(comment.getState() == 1)
+        {
+            oldComment.setState(1);
+        }
+        if(comment.getState() == 2)
+        {
+            oldComment.setState(2);
+        }
+        commentService.save(oldComment);
+        map.put("errorNo",0);
+        return map;
+    }
 }

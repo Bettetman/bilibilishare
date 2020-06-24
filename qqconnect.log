@@ -1249,3 +1249,8 @@ Caused by: java.net.NoRouteToHostException: No route to host: connect
 58311 INFO  [2020-06-24 20:02:04]  {dataSource-2} inited
 0    INFO  [2020-06-24 20:03:00]  {dataSource-1} inited
 0    INFO  [2020-06-24 20:22:16]  {dataSource-1} inited
+3149175 INFO  [2020-06-24 21:14:45]  {dataSource-1} closed
+3150347 INFO  [2020-06-24 21:14:47]  {dataSource-2} inited
+3640147 INFO  [2020-06-24 21:22:56]  {dataSource-2} closed
+3641269 INFO  [2020-06-24 21:22:57]  {dataSource-3} inited
+0    INFO  [2020-06-24 21:26:46]  {dataSource-1} inited
