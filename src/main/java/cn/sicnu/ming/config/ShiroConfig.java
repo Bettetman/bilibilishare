@@ -55,10 +55,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/zjf","anon");
 
         filterChainDefinitionMap.put("/article/**","anon");
-
         //管理员后台登陆
         filterChainDefinitionMap.put("/admin/login.html","anon");
-
         //配置退出拦截器，具体的突出代码shiro已经实现
         filterChainDefinitionMap.put("/user/logout","logout");
 

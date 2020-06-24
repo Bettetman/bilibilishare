@@ -51,5 +51,21 @@ public class CommentController {
         map.put("success", true);
         return map;
     }
+    /**
+     * 查询评论列表（前端页面显示）
+     * @param comment
+     * @param page
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "/list")
+    public Map<String,Object> list(Comment comment, @RequestParam(value = "page",required = false)Integer page) {
+        comment.setState(1);
+        Page<Comment> commentPage = commentService.list(comment,page,5, Sort.Direction.DESC,"commentDate");
+        Map<String, Object> map = new HashMap<>();
+        map.put("data", HtmlUtil.getCommentPageStr(commentPage.getContent()));      //评论的html代码
+        map.put("total",commentPage.getTotalPages());                               //评论总页数
+        return map;
 
+    }
 }

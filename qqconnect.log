@@ -1234,3 +1234,18 @@ Caused by: java.net.NoRouteToHostException: No route to host: connect
 136591 INFO  [2020-06-24 01:03:54]  {dataSource-1} closed
 137640 INFO  [2020-06-24 01:03:55]  {dataSource-2} inited
 0    INFO  [2020-06-24 01:14:23]  {dataSource-1} inited
+0    INFO  [2020-06-24 17:24:15]  {dataSource-1} inited
+1037974 INFO  [2020-06-24 17:41:33]  {dataSource-1} closed
+1039157 INFO  [2020-06-24 17:41:34]  {dataSource-2} inited
+2319966 DEBUG [2020-06-24 18:02:55]  skip not validate connection.
+2825160 INFO  [2020-06-24 18:11:20]  {dataSource-2} closed
+2826206 INFO  [2020-06-24 18:11:21]  {dataSource-3} inited
+0    INFO  [2020-06-24 18:15:54]  {dataSource-1} inited
+6110836 INFO  [2020-06-24 19:57:45]  {dataSource-1} closed
+6111954 INFO  [2020-06-24 19:57:46]  {dataSource-2} inited
+0    INFO  [2020-06-24 19:58:36]  {dataSource-1} inited
+0    INFO  [2020-06-24 20:01:06]  {dataSource-1} inited
+57084 INFO  [2020-06-24 20:02:03]  {dataSource-1} closed
+58311 INFO  [2020-06-24 20:02:04]  {dataSource-2} inited
+0    INFO  [2020-06-24 20:03:00]  {dataSource-1} inited
+0    INFO  [2020-06-24 20:22:16]  {dataSource-1} inited
